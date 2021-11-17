@@ -4,15 +4,24 @@
     <h1>Movies</h1>
     <ul>
       <li :key="item.id" v-for="item in moviesList">
+        <div>
+          <img
+            :src="imgUrl + poster_sizes[3] + item.poster_path"
+            :alt="item.title"
+          />
+        </div>
         <div>{{ item.title }}</div>
         <div>{{ item.original_title }}</div>
+        <div>
+            <i class="fas fa-star"></i>
+        </div>
         <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
         <div>
           <country-flag
             :country="
               item.original_language === 'en' ? 'gb' : item.original_language
             "
-            size="small"
+            size="medium"
           />
         </div>
         <div>{{ item.vote_average }}</div>
@@ -21,6 +30,14 @@
     <h1>TV Shows</h1>
     <ul>
       <li :key="item.id" v-for="item in tvShowList">
+        <div>
+          <div>
+            <img
+              :src="imgUrl + poster_sizes[2] + item.poster_path"
+              :alt="item.title"
+            />
+          </div>
+        </div>
         <div>{{ item.name }}</div>
         <div>{{ item.original_name }}</div>
         <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
@@ -54,9 +71,18 @@ export default {
       tvShowList: [],
       apiKey: "e498fbee3869e4fa0dc21e97223c41de",
       apiUrl: "https://api.themoviedb.org/3",
+      imgUrl: "https://image.tmdb.org/t/p/",
+      poster_sizes: ["w92", "w154", "w185", "w342", "w500", "w780", "original"],
     };
   },
   methods: {
+      countStars(i){
+          let stars = [];
+          for(let k = 0; i <= Math.floor(i/2);k++){
+              stars.push({ element : <i class="fas fa-star"></i>});
+          }
+          return stars;
+      },
     axiosRequest(url, list) {
       axios
         .get(this.apiUrl + url, {
@@ -75,7 +101,7 @@ export default {
           params: {
             api_key: this.apiKey,
             language: "it",
-            query: word
+            query: word,
           },
         })
         .then((resp) => {
@@ -83,8 +109,8 @@ export default {
         });
     },
     doRequestApi(word) {
-      this.axiosRequestWithQuery("/search/movie",word,"moviesList");
-      this.axiosRequestWithQuery("/search/tv",word,"tvShowList");
+      this.axiosRequestWithQuery("/search/movie", word, "moviesList");
+      this.axiosRequestWithQuery("/search/tv", word, "tvShowList");
     },
   },
   mounted() {
@@ -95,4 +121,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+
+
+</style>

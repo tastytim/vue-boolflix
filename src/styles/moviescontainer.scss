@@ -2,9 +2,13 @@
   ul {
     display: flex;
     flex-wrap: wrap;
+    list-style: none;
     li{
-        width: 200px;
-        height: 200px;
+        width: 185px;
+        height: 100%;
+        img{
+          height: 275px;
+        }
     }
   }
 }

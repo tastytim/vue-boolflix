@@ -1,9 +1,8 @@
 <template>
   <div class="searchbar">
-    <input type="text" v-model="inputText">
+    <input @focus="focusInput" type="text" v-model="inputText" ref="inputSearchText" @keyup.enter="sendRequestSearch">
     <button 
     @click="sendRequestSearch"
-    @key.enter="sendRequestSearch"
     >Search</button>
   </div>
 </template>
@@ -19,25 +18,20 @@ export default {
   methods :{
     sendRequestSearch(){
       this.$emit("searchRequest", this.inputText);
+    },
+    focusInput(){
+      //  <!-- https://michaelnthiessen.com/set-focus-on-input-vue  aggiungere ref al elemento e dare il focus nei metodi focus -->
+      this.$refs.inputSearchText.$el.focus();
     }
+  },
+  mounted(){
+    
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
