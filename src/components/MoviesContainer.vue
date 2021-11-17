@@ -5,7 +5,8 @@
       <li :key="item.id" v-for="item in moviesList">
         {{ item.title }}
         {{ item.original_title }}
-        {{ item.original_language }}
+        <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
+        <country-flag :country='item.original_language === "en"? "gb" : item.original_language' size='small'/>
         {{ item.vote_average }}
       </li>
     </ul>
@@ -13,12 +14,15 @@
 </template>
 
 <script>
+
 import SearchBar from "../components/SearchBar.vue";
 import axios from "axios";
+// https://www.npmjs.com/package/vue-country-flag
+import CountryFlag from 'vue-country-flag'
 export default {
   name: "MoviesContainer",
   components: {
-    SearchBar,
+    SearchBar, CountryFlag
   },
   data() {
     return {
