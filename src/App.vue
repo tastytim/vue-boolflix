@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss">
 @import "/src/styles/searchbar.scss";
+@import "/src/styles/moviescontainer.scss";
 
 html, body{
   padding: 0;
