@@ -3,11 +3,16 @@
       <ul>
           <li v-for="(item , index) in links" :key="index">{{item.name}}</li>
       </ul>
+      <SearchBar></SearchBar>
   </div>
 </template>
 
 <script>
+import SearchBar from './SearchBar.vue'
 export default {
+    components :{
+      SearchBar
+    },
    name: "Navbar",
    data() {
        return {
@@ -31,6 +36,9 @@ export default {
           ]
        }
    },
+   methods: {
+       
+   }
 }
 </script>
 

@@ -1,7 +1,5 @@
 <template>
   <div class="moviescontainer">
-    <Navbar></Navbar>
-    <SearchBar @searchRequest="doRequestApi"></SearchBar>
     <h1>Movies</h1>
     <ul>
       <li :key="item.id" v-for="item in moviesList">
@@ -70,17 +68,13 @@
   </div>
 </template>
 <script>
-import SearchBar from "../components/SearchBar.vue";
 import axios from "axios";
 // https://www.npmjs.com/package/vue-country-flag
 import CountryFlag from "vue-country-flag";
-import Navbar from './Navbar.vue';
 export default {
   name: "MoviesContainer",
   components: {
-    SearchBar,
     CountryFlag,
-    Navbar,
   },
   data() {
     return {
@@ -139,12 +133,18 @@ export default {
       this.axiosRequestWithQuery("/search/movie", word, "moviesList");
       this.axiosRequestWithQuery("/search/tv", word, "tvShowList");
     },
+    
   },
   mounted() {
     //   3 ore per capire che non va inserito "this.array" ma array come stringa "array"
     this.axiosRequest("/movie/popular", "moviesList");
     this.axiosRequest("/tv/popular", "tvShowList");
   },
+  created() {
+    this.$root.$on('searchRequest', (date) => {
+        this.doRequestApi(date);
+    });
+}
 };
 </script>
 

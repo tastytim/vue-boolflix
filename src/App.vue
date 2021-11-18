@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    <Navbar></Navbar>
     <MoviesContainer></MoviesContainer>
   </div>
 </template>
 
 <script>
 import MoviesContainer from "./components/MoviesContainer.vue";
+import Navbar from "./components/Navbar.vue";
 
 export default {
   props:{
@@ -13,12 +15,11 @@ export default {
   },
   name: "App",
   components: {
-    MoviesContainer
+    MoviesContainer,Navbar
   },
   methods:{
-    
-
-  }
+  
+  },
 };
 </script>
 

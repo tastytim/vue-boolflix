@@ -1,13 +1,16 @@
 .navbar{
     display: flex;
+    justify-content: space-between;
     height: 80px;
     align-items: center;
     background-color: rgb(20, 20, 20);
+    border: 1px solid black;
     color: white;
     ul{
+        display: flex;
+        list-style: none;
         li{
             padding: 10px;
         }
     }
-
 }
