@@ -1,13 +1,14 @@
 .moviescontainer {
+  background-color: #141414;
   ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     li{
-        width: 185px;
-        height: 100%;
+       
+        
         img{
-          height: 275px;
+       
         }
     }
   }

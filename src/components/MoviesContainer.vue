@@ -1,5 +1,6 @@
 <template>
   <div class="moviescontainer">
+    <Navbar></Navbar>
     <SearchBar @searchRequest="doRequestApi"></SearchBar>
     <h1>Movies</h1>
     <ul>
@@ -7,7 +8,7 @@
         <div>
           <img
             v-if="item.poster_path!=null"
-            :src="imgUrl + poster_sizes[3] + item.poster_path"
+            :src="imgUrl + poster_sizes[2] + item.poster_path"
             :alt="item.title"
           />
           <img v-else src="../assets/No-Image.svg.png" alt="image">
@@ -73,11 +74,13 @@ import SearchBar from "../components/SearchBar.vue";
 import axios from "axios";
 // https://www.npmjs.com/package/vue-country-flag
 import CountryFlag from "vue-country-flag";
+import Navbar from './Navbar.vue';
 export default {
   name: "MoviesContainer",
   components: {
     SearchBar,
     CountryFlag,
+    Navbar,
   },
   data() {
     return {

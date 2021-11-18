@@ -1,6 +1,6 @@
 <template>
   <div class="searchbar">
-    <input @focus="focusInput" type="text" v-model="inputText" ref="inputSearchText" @keyup.enter="sendRequestSearch">
+    <input  type="text" v-model="inputText" ref="inputSearchText" @keyup.enter="sendRequestSearch">
     <button 
     @click="sendRequestSearch"
     >Search</button>
@@ -21,12 +21,11 @@ export default {
     },
     focusInput(){
       //  <!-- https://michaelnthiessen.com/set-focus-on-input-vue  aggiungere ref al elemento e dare il focus nei metodi focus -->
-      this.$refs.inputSearchText.$el.focus();
+      this.$refs.inputSearchText.focus();
     }
   },
   mounted(){
-    
-
+    this.focusInput();
   }
 }
 </script>
