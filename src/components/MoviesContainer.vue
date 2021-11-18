@@ -6,15 +6,14 @@
       <li :key="item.id" v-for="item in moviesList">
         <div>
           <img
+            v-if="item.poster_path!=null"
             :src="imgUrl + poster_sizes[3] + item.poster_path"
             :alt="item.title"
           />
+          <img v-else src="../assets/No-Image.svg.png" alt="image">
         </div>
         <div>{{ item.title }}</div>
         <div>{{ item.original_title }}</div>
-        <div>
-            <i class="fas fa-star"></i>
-        </div>
         <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
         <div>
           <country-flag
@@ -24,7 +23,14 @@
             size="medium"
           />
         </div>
-        <div>{{ item.vote_average }}</div>
+        <div>
+            <i 
+            v-for="(el, i) in countStarsActive(parseInt(item.vote_average))"
+            :key="i"
+            class="far fa-star" :class="el.active">
+            </i>
+            
+        </div>
       </li>
     </ul>
     <h1>TV Shows</h1>
@@ -33,9 +39,11 @@
         <div>
           <div>
             <img
+            v-if="item.poster_path!=null"
               :src="imgUrl + poster_sizes[2] + item.poster_path"
               :alt="item.title"
             />
+            <img v-else src="../assets/No-Image.svg.png" alt="image">
           </div>
         </div>
         <div>{{ item.name }}</div>
@@ -46,10 +54,16 @@
             :country="
               item.original_language === 'en' ? 'gb' : item.original_language
             "
-            size="small"
+            size="medium"
           />
         </div>
-        <div>{{ item.vote_average }}</div>
+        <div>
+          <i 
+            v-for="(el, i) in countStarsActive(parseInt(item.vote_average))"
+            :key="i"
+            class="far fa-star" :class="el.active">
+            </i>
+        </div>
       </li>
     </ul>
   </div>
@@ -76,13 +90,23 @@ export default {
     };
   },
   methods: {
-      countStars(i){
-          let stars = [];
-          for(let k = 0; i <= Math.floor(i/2);k++){
-              stars.push({ element : <i class="fas fa-star"></i>});
-          }
-          return stars;
-      },
+    countStarsActive(i){
+      let list =[];
+      let counter = Math.floor(i/2);
+      for(let k = 1; k <= 5; k++){
+        if(counter == 0){
+          list.push({
+            active : "",
+          });
+        }else{
+          list.push({
+            active: "star-active",
+          })
+          counter--;
+        }
+      }
+        return list;
+    },
     axiosRequest(url, list) {
       axios
         .get(this.apiUrl + url, {
