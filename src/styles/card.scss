@@ -1,0 +1,45 @@
+.custom-card {
+    font-weight: bold;
+  position: relative;
+  width: 185px;
+  img {
+    width: 185px;
+    height: 278px;
+    background-color: #141414;
+  }
+  .country {
+    display: flex;
+    align-items: center;
+  }
+  .overlay {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 10px;
+  }
+}
+
+.custom-card:hover {
+    position: absolute;
+  width: 300px;
+  height: 400px;
+  z-index: 999;
+  
+  img {
+    width: 300px;
+    height: 200px;
+    z-index: 999;
+    filter: drop-shadow(0.9);
+    background-color: rgba(26, 27, 44, 0.885);
+  }
+
+  .overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100%  - 200px);
+    width: 100%;
+    background-color: #141424;
+  }
+}

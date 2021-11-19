@@ -1,16 +1,24 @@
-.navbar{
+.navbar {
+  display: flex;
+  height: 80px;
+  display: inline-block;
+  background-color: rgb(20, 20, 20);
+  border: 1px solid black;
+  color: white;
+  img {
+    width: 50px;
+    margin-left: 20px;
+  }
+  ul {
     display: flex;
-    justify-content: space-between;
-    height: 80px;
-    align-items: center;
-    background-color: rgb(20, 20, 20);
-    border: 1px solid black;
-    color: white;
-    ul{
-        display: flex;
-        list-style: none;
-        li{
-            padding: 10px;
-        }
+    list-style: none;
+    li {
+      padding: 10px;
     }
+  }
+  .col{
+      display: flex;
+  }    .search-col{
+      justify-content: end;
+  }
 }

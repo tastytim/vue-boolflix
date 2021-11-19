@@ -27,6 +27,8 @@ export default {
 @import "/src/styles/searchbar.scss";
 @import "/src/styles/moviescontainer.scss";
 @import "/src/styles/navbar.scss";
+@import "/src/styles/card.scss";
+@import "~bootstrap/scss/bootstrap";
 
 html, body{
   padding: 0;

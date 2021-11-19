@@ -1,5 +1,9 @@
 .searchbar{
-    
     padding: 20px 20px;
     display: flex;
+    button{
+        color: black;
+        background: red;
+        border:1px solid red
+    }
 }

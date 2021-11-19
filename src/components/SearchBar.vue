@@ -18,6 +18,7 @@ export default {
   methods :{
     sendRequestSearch(){
       this.$root.$emit("searchRequest", this.inputText);
+      this.inputText="";
     },
     focusInput(){
       //  <!-- https://michaelnthiessen.com/set-focus-on-input-vue  aggiungere ref al elemento e dare il focus nei metodi focus -->

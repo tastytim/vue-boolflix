@@ -1,80 +1,60 @@
 <template>
   <div class="moviescontainer">
-    <h1>Movies</h1>
-    <ul>
-      <li :key="item.id" v-for="item in moviesList">
-        <div>
-          <img
-            v-if="item.poster_path!=null"
-            :src="imgUrl + poster_sizes[2] + item.poster_path"
-            :alt="item.title"
-          />
-          <img v-else src="../assets/No-Image.svg.png" alt="image">
+    <div class="container">
+      <h1>MOVIES</h1>
+      <div class="row
+          row-cols-1
+          row-cols-sm-2
+          row-cols-md-3
+          row-cols-lg-4
+          row-cols-xl-5
+          row-cols-xxl-6
+          g-4">
+        <div class="col" v-for="(movie, index) in moviesList" :key="index">
+          <Card
+            :countStar="countStarsActive"
+            :imgUrl="imgUrl"
+            :poster_sizes="poster_sizes"
+            :poster_path="movie.poster_path"
+            :original_title="movie.original_title"
+            :title="movie.title"
+            :original_language="movie.original_language"
+            :vote_average="movie.vote_average"
+          ></Card>
         </div>
-        <div>{{ item.title }}</div>
-        <div>{{ item.original_title }}</div>
-        <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
-        <div>
-          <country-flag
-            :country="
-              item.original_language === 'en' ? 'gb' : item.original_language
-            "
-            size="medium"
-          />
+      </div>
+      <h1>TV SHOWS</h1>
+      <div class="row
+          row-cols-1
+          row-cols-sm-2
+          row-cols-md-3
+          row-cols-lg-4
+          row-cols-xl-5
+          row-cols-xxl-6
+          g-4">
+        <div class="col" v-for="(movie, index) in tvShowList" :key="index">
+          <Card
+            :countStar="countStarsActive"
+            :imgUrl="imgUrl"
+            :poster_sizes="poster_sizes"
+            :poster_path="movie.poster_path"
+            :original_title="movie.original_name"
+            :title="movie.name"
+            :original_language="movie.original_language"
+            :vote_average="movie.vote_average"
+          ></Card>
         </div>
-        <div>
-            <i 
-            v-for="(el, i) in countStarsActive(parseInt(item.vote_average))"
-            :key="i"
-            class="far fa-star" :class="el.active">
-            </i>
-            
-        </div>
-      </li>
-    </ul>
-    <h1>TV Shows</h1>
-    <ul>
-      <li :key="item.id" v-for="item in tvShowList">
-        <div>
-          <div>
-            <img
-            v-if="item.poster_path!=null"
-              :src="imgUrl + poster_sizes[2] + item.poster_path"
-              :alt="item.title"
-            />
-            <img v-else src="../assets/No-Image.svg.png" alt="image">
-          </div>
-        </div>
-        <div>{{ item.name }}</div>
-        <div>{{ item.original_name }}</div>
-        <!-- United Kingdom has 'gb' abbreviation. I check if 'en' and modify it -->
-        <div>
-          <country-flag
-            :country="
-              item.original_language === 'en' ? 'gb' : item.original_language
-            "
-            size="medium"
-          />
-        </div>
-        <div>
-          <i 
-            v-for="(el, i) in countStarsActive(parseInt(item.vote_average))"
-            :key="i"
-            class="far fa-star" :class="el.active">
-            </i>
-        </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-// https://www.npmjs.com/package/vue-country-flag
-import CountryFlag from "vue-country-flag";
+import Card from "./Card.vue";
 export default {
   name: "MoviesContainer",
   components: {
-    CountryFlag,
+    Card
   },
   data() {
     return {
@@ -87,22 +67,22 @@ export default {
     };
   },
   methods: {
-    countStarsActive(i){
-      let list =[];
-      let counter = Math.floor(i/2);
-      for(let k = 1; k <= 5; k++){
-        if(counter == 0){
+    countStarsActive(i) {
+      let list = [];
+      let counter = Math.floor(i / 2);
+      for (let k = 1; k <= 5; k++) {
+        if (counter == 0) {
           list.push({
-            active : "",
+            active: "",
           });
-        }else{
+        } else {
           list.push({
             active: "star-active",
-          })
+          });
           counter--;
         }
       }
-        return list;
+      return list;
     },
     axiosRequest(url, list) {
       axios
@@ -130,25 +110,28 @@ export default {
         });
     },
     doRequestApi(word) {
-      this.axiosRequestWithQuery("/search/movie", word, "moviesList");
-      this.axiosRequestWithQuery("/search/tv", word, "tvShowList");
+      if (word == "" || word == null) {
+        this.returnToHome();
+      } else {
+        this.axiosRequestWithQuery("/search/movie", word, "moviesList");
+        this.axiosRequestWithQuery("/search/tv", word, "tvShowList");
+      }
     },
-    
+    returnToHome() {
+      //   3 ore per capire che non va inserito "this.array" ma array come stringa "array"
+      this.axiosRequest("/movie/popular", "moviesList");
+      this.axiosRequest("/tv/popular", "tvShowList");
+    },
   },
   mounted() {
-    //   3 ore per capire che non va inserito "this.array" ma array come stringa "array"
-    this.axiosRequest("/movie/popular", "moviesList");
-    this.axiosRequest("/tv/popular", "tvShowList");
+    this.returnToHome();
   },
   created() {
-    this.$root.$on('searchRequest', (date) => {
-        this.doRequestApi(date);
+    this.$root.$on("searchRequest", (date) => {
+      this.doRequestApi(date);
     });
-}
+  },
 };
 </script>
 
-<style lang="scss">
-
-
-</style>
+<style lang="scss"></style>
