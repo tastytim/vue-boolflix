@@ -15,7 +15,7 @@ export default {
   },
   name: "App",
   components: {
-    MoviesContainer,Navbar
+    MoviesContainer,Navbar,
   },
   methods:{
   
@@ -24,15 +24,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap/scss/bootstrap";
 @import "/src/styles/searchbar.scss";
 @import "/src/styles/moviescontainer.scss";
 @import "/src/styles/navbar.scss";
 @import "/src/styles/card.scss";
-@import "~bootstrap/scss/bootstrap";
 
 html, body{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: #141414;
 }
 </style>

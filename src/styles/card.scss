@@ -2,10 +2,12 @@
     font-weight: bold;
   position: relative;
   width: 185px;
+  transition: width 0.3s , height 0.3s;
   img {
     width: 185px;
     height: 278px;
     background-color: #141414;
+    transition: width 0.3s , height 0.3s;
   }
   .country {
     display: flex;
@@ -17,11 +19,12 @@
     bottom: 0;
     left: 0;
     padding: 0 10px;
+    
   }
 }
 
 .custom-card:hover {
-    position: absolute;
+  position: absolute;
   width: 300px;
   height: 400px;
   z-index: 999;
@@ -30,7 +33,6 @@
     width: 300px;
     height: 200px;
     z-index: 999;
-    filter: drop-shadow(0.9);
     background-color: rgba(26, 27, 44, 0.885);
   }
 

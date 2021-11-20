@@ -122,12 +122,20 @@ export default {
       this.axiosRequest("/movie/popular", "moviesList");
       this.axiosRequest("/tv/popular", "tvShowList");
     },
+    changePage(url){
+      this.axiosRequest(url, "moviesList");
+    }
   },
   mounted() {
     this.returnToHome();
   },
   created() {
+    this.$root.$on("navbarItemClicked", (url) => {
+      console.log(url)
+      this.changePage(url);
+    });
     this.$root.$on("searchRequest", (date) => {
+      console.log(date)
       this.doRequestApi(date);
     });
   },

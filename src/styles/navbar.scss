@@ -1,24 +1,28 @@
 .navbar {
-  display: flex;
-  height: 80px;
-  display: inline-block;
   background-color: rgb(20, 20, 20);
-  border: 1px solid black;
-  color: white;
+  border-bottom: 1px solid black;
+
   img {
     width: 50px;
     margin-left: 20px;
   }
-  ul {
-    display: flex;
-    list-style: none;
-    li {
-      padding: 10px;
-    }
+  .navbar-nav {
+
+    .nav-item {
+      padding: 0 10px;
+      .nav-link {
+        color: white;
+      }
+      .nav-link:hover , .nav-link:focus {
+      color: rgba(210, 8, 8, 0.7);
   }
-  .col{
-      display: flex;
-  }    .search-col{
-      justify-content: end;
+    }
+    
+  }
+  .col {
+    display: flex;
+  }
+  .search-col {
+    justify-content: end;
   }
 }

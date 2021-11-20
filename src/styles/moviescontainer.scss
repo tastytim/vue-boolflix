@@ -1,9 +1,13 @@
 .moviescontainer {
   background-color: #141414;
   color: white;
-  
+  .container{
+    h1{
+      padding: 20px 0;
+    }
+    
+  }
 }
-
 .star-active{
   color: yellow;
 }

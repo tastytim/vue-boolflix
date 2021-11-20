@@ -1,9 +1,14 @@
-.searchbar{
-    padding: 20px 20px;
-    display: flex;
-    button{
-        color: black;
-        background: red;
-        border:1px solid red
-    }
+.searchbar {
+  padding: 20px 20px;
+  display: flex;
+  .btn-outline-success {
+    color: black;
+    background: red;
+    border: 1px solid red;
+    color: white;
+  }
+  .btn-outline-success:hover {
+    background-color: #353736;
+    border-color: #49534e;
+  }
 }

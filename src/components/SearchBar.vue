@@ -1,7 +1,8 @@
 <template>
   <div class="searchbar">
-    <input  type="text" v-model="inputText" ref="inputSearchText" @keyup.enter="sendRequestSearch">
+    <input class="form-control me-2" type="text" v-model="inputText" ref="inputSearchText" @keyup.enter="sendRequestSearch">
     <button 
+    class="btn btn-outline-success"
     @click="sendRequestSearch"
     >Search</button>
   </div>
